@@ -1,0 +1,46 @@
+{
+  "placeholderImages": [
+    {
+      "id": "solar-panel",
+      "imageUrl": "https://picsum.photos/seed/panels/600/400",
+      "description": "Solar panel product",
+      "imageHint": "solar panel roof"
+    },
+    {
+      "id": "battery",
+      "imageUrl": "https://picsum.photos/seed/battery/600/400",
+      "description": "Home battery product",
+      "imageHint": "battery storage"
+    },
+    {
+      "id": "inverter",
+      "imageUrl": "https://picsum.photos/seed/inverter/600/400",
+      "description": "Solar inverter product",
+      "imageHint": "inverter technology"
+    },
+    {
+      "id": "testimonial-1",
+      "imageUrl": "https://picsum.photos/seed/person1/100/100",
+      "description": "Client photo 1",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "testimonial-2",
+      "imageUrl": "https://picsum.photos/seed/family2/100/100",
+      "description": "Client photo 2",
+      "imageHint": "happy family"
+    },
+    {
+      "id": "testimonial-3",
+      "imageUrl": "https://picsum.photos/seed/person3/100/100",
+      "description": "Client photo 3",
+      "imageHint": "professional man"
+    },
+    {
+      "id": "about-us",
+      "imageUrl": "https://picsum.photos/seed/team/600/400",
+      "description": "About us image",
+      "imageHint": "renewable energy team"
+    }
+  ]
+}
