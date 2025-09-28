@@ -28,67 +28,28 @@ export default function HeroSection() {
     // Don't load video on initial render for mobile devices
     if (!videoRef.current) return;
     
-    // Check if the device has a preference for reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
     const loadVideo = () => {
       if (isMobile === undefined) return; // Wait until we know device type
       
       const videoElement = videoRef.current;
       if (!videoElement) return;
       
-      // For devices that prefer reduced motion, don't load video at all
-      if (prefersReducedMotion) {
-        setIsVideoLoaded(false);
-        return;
+      if (isMobile) {
+        // For mobile, use a smaller, more compressed version or static image
+        videoElement.setAttribute('poster', '/assets/background-poster.jpg');
+        videoElement.src = '/assets/background-mobile.mp4';
+      } else {
+        // For desktop, load the regular video with delay
+        videoElement.src = '/assets/background.mp4';
       }
       
-      try {
-        // Check if the connection is slow (using the navigator.connection API where available)
-        const connection = (navigator as any).connection;
-        const isSlowConnection = connection && (
-          connection.saveData || 
-          connection.effectiveType.includes('2g') || 
-          connection.effectiveType.includes('slow')
-        );
-        
-        // Don't load video for mobile devices on slow connections
-        if (isMobile && isSlowConnection) {
-          setIsVideoLoaded(false);
-          return;
-        }
-        
-        // Handle different device types
-        if (isMobile) {
-          // For mobile, use a smaller, more compressed version
-          videoElement.setAttribute('poster', '/assets/background-poster.svg');
-          videoElement.src = '/assets/background-mobile.mp4';
-        } else {
-          // For desktop, load the regular video with delay
-          videoElement.src = '/assets/background.mp4';
-        }
-        
-        videoElement.addEventListener('loadeddata', () => {
-          setIsVideoLoaded(true);
-        });
-        
-        // Fallback in case video fails to load or takes too long
-        const fallbackTimer = setTimeout(() => {
-          if (!isVideoLoaded) {
-            console.log('Video load timeout - using fallback');
-            setIsVideoLoaded(false);
-          }
-        }, 5000); // 5 seconds timeout
-        
-        return () => clearTimeout(fallbackTimer);
-      } catch (error) {
-        console.error('Error loading video:', error);
-        setIsVideoLoaded(false);
-      }
+      videoElement.addEventListener('loadeddata', () => {
+        setIsVideoLoaded(true);
+      });
     };
     
     // Delay video loading slightly to prioritize other content
-    const timer = setTimeout(loadVideo, 800);
+    const timer = setTimeout(loadVideo, 500);
     
     return () => {
       clearTimeout(timer);
@@ -98,7 +59,7 @@ export default function HeroSection() {
         });
       }
     };
-  }, [isMobile, isVideoLoaded]);
+  }, [isMobile]);
 
 
   return (
@@ -120,7 +81,7 @@ export default function HeroSection() {
         muted
         playsInline
         preload="none" // Don't preload the video
-        poster="/assets/background-poster.svg" // Static image shown until video loads
+        poster="/assets/background-poster.jpg" // Static image shown until video loads
         className="absolute inset-0 w-full h-full object-cover -z-10"
         style={{ 
           opacity: isVideoLoaded ? 1 : 0,
