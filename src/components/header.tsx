@@ -33,13 +33,16 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/assets/logo.png"
-                alt="Logo"
-                width={180}
-                height={180}
-                className="object-contain rounded-2xl border-4 border-secondary shadow-lg bg-secondary transition-all duration-300 hover:shadow-2xl hover:bg-secondary/40 hover:border-secondary/40"
-              />
+              <div className="relative w-[100px] h-[40px] sm:w-[120px] sm:h-[48px] md:w-[130px] md:h-[52px] lg:w-[140px] lg:h-[56px]">
+                <Image
+                  src="/assets/logo.png"
+                  alt="Urban Power Logo"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 100px, (max-width: 768px) 120px, (max-width: 1024px) 130px, 140px"
+                  className="object-contain rounded-xl sm:rounded-2xl shadow-lg"
+                />
+              </div>
             </Link>
           </div>
           <motion.nav
@@ -66,45 +69,48 @@ export default function Header() {
             </Button>
           </div>
           <div className="md:hidden flex items-center">
-            {!mobileMenuOpen && (
-              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)}>
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            )}
-            {mobileMenuOpen && (
-              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                  <span className="sr-only">Mobile Navigation</span>
-                  <div className="p-4">
-                    <div className="flex justify-between items-center mb-8">
-                      <Link href="/" className="flex items-center">
-                        <Image src="/assets/logo.png" alt="Logo" width={180} height={180} className="object-contain" />
-                      </Link>
-                      <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
-                        <X className="h-6 w-6" />
-                        <span className="sr-only">Close menu</span>
-                      </Button>
-                    </div>
-                    <nav className="flex flex-col space-y-4">
-                      {navLinks.map((link) => (
-                        <Link
-                          key={link.name}
-                          href={link.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="font-medium text-lg text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          {link.name}
-                        </Link>
-                      ))}
-                    </nav>
-                    <Button asChild className="w-full mt-8">
-                      <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Get a Quote</Link>
+            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)}>
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <div className="p-4">
+                  <div className="flex justify-between items-center mb-8">
+                    <Link href="/" className="flex items-center">
+                      <div className="relative w-[100px] h-[40px] sm:w-[120px] sm:h-[48px]">
+                        <Image
+                          src="/assets/logo.png"
+                          alt="Urban Power Logo"
+                          fill
+                          sizes="(max-width: 640px) 100px, 120px"
+                          className="object-contain rounded-xl"
+                        />
+                      </div>
+                    </Link>
+                    <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
+                      <X className="h-6 w-6" />
+                      <span className="sr-only">Close menu</span>
                     </Button>
                   </div>
-                </SheetContent>
-              </Sheet>
-            )}
+                  <nav className="flex flex-col space-y-4">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="font-medium text-lg text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                  </nav>
+                  <Button asChild className="w-full mt-8">
+                    <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Get a Quote</Link>
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>

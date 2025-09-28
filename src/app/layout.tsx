@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'CleanSpark Future',
+  title: 'Urban Power',
   description: 'Power Your Future with Clean Energy',
 };
 
