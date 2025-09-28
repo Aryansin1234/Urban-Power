@@ -68,7 +68,7 @@ export const products: Product[] = [
     name: 'Lithium (Solar) Batteries',
     tagline: 'Advanced LFP technology for high performance and safety.',
     icon: BatteryCharging,
-    imageId: 'lithiumbattery',
+    imageId: 'battery',
     models: [
       {
         id: '220LFP',
