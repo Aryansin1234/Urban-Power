@@ -1,13 +1,18 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { BatteryCharging, LayoutGrid, Zap } from "lucide-react";
-import GooeyBlobBackground from "./GooeyBlobBackground";
+import { useIsMobile } from "@/hooks/use-mobile";
+
 export default function HeroSection() {
   const targetRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const isMobile = useIsMobile();
+  
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end start"],
@@ -17,17 +22,110 @@ export default function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
   const filter = useTransform(scrollYProgress, [0, 0.2], ["blur(0px)", "blur(10px)"]);
+  
+  // Handle video loading and optimization
+  useEffect(() => {
+    // Don't load video on initial render for mobile devices
+    if (!videoRef.current) return;
+    
+    // Check if the device has a preference for reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    const loadVideo = () => {
+      if (isMobile === undefined) return; // Wait until we know device type
+      
+      const videoElement = videoRef.current;
+      if (!videoElement) return;
+      
+      // For devices that prefer reduced motion, don't load video at all
+      if (prefersReducedMotion) {
+        setIsVideoLoaded(false);
+        return;
+      }
+      
+      try {
+        // Check if the connection is slow (using the navigator.connection API where available)
+        const connection = (navigator as any).connection;
+        const isSlowConnection = connection && (
+          connection.saveData || 
+          connection.effectiveType.includes('2g') || 
+          connection.effectiveType.includes('slow')
+        );
+        
+        // Don't load video for mobile devices on slow connections
+        if (isMobile && isSlowConnection) {
+          setIsVideoLoaded(false);
+          return;
+        }
+        
+        // Handle different device types
+        if (isMobile) {
+          // For mobile, use a smaller, more compressed version
+          videoElement.setAttribute('poster', '/assets/background-poster.svg');
+          videoElement.src = '/assets/background-mobile.mp4';
+        } else {
+          // For desktop, load the regular video with delay
+          videoElement.src = '/assets/background.mp4';
+        }
+        
+        videoElement.addEventListener('loadeddata', () => {
+          setIsVideoLoaded(true);
+        });
+        
+        // Fallback in case video fails to load or takes too long
+        const fallbackTimer = setTimeout(() => {
+          if (!isVideoLoaded) {
+            console.log('Video load timeout - using fallback');
+            setIsVideoLoaded(false);
+          }
+        }, 5000); // 5 seconds timeout
+        
+        return () => clearTimeout(fallbackTimer);
+      } catch (error) {
+        console.error('Error loading video:', error);
+        setIsVideoLoaded(false);
+      }
+    };
+    
+    // Delay video loading slightly to prioritize other content
+    const timer = setTimeout(loadVideo, 800);
+    
+    return () => {
+      clearTimeout(timer);
+      if (videoRef.current) {
+        videoRef.current.removeEventListener('loadeddata', () => {
+          setIsVideoLoaded(true);
+        });
+      }
+    };
+  }, [isMobile, isVideoLoaded]);
 
 
   return (
     <section ref={targetRef} className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center overflow-hidden">
+      {/* Background with gradient placeholder that shows until video loads */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-gradient-to-b from-gray-900 to-primary/30 -z-20"
+        style={{
+          opacity: isVideoLoaded && !isMobile ? 0 : 1,
+          transition: 'opacity 0.5s ease-in-out'
+        }}
+      />
+      
+      {/* Video background - optimized loading */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="none" // Don't preload the video
+        poster="/assets/background-poster.svg" // Static image shown until video loads
         className="absolute inset-0 w-full h-full object-cover -z-10"
-        src="/assets/background.mp4"
+        style={{ 
+          opacity: isVideoLoaded ? 1 : 0,
+          transition: 'opacity 1s ease-in-out'
+        }}
       />
       <motion.div
         style={{ opacity }}
