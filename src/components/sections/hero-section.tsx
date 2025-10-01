@@ -68,16 +68,19 @@ export default function HeroSection() {
   }, [isMobile]);
 
   return (
-    <section ref={targetRef} className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center overflow-hidden">
+    <section
+      ref={targetRef}
+      className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center overflow-hidden px-4 sm:px-8 md:px-12"
+    >
       {/* Background with gradient placeholder that shows until video loads */}
-      <div 
+      <div
         className="absolute inset-0 w-full h-full bg-gradient-to-b from-gray-900 to-primary/30 -z-20"
         style={{
           opacity: isVideoLoaded && !isMobile ? 0 : 1,
-          transition: 'opacity 0.5s ease-in-out'
+          transition: "opacity 0.5s ease-in-out",
         }}
       />
-      
+
       {/* Video background - optimized loading */}
       <video
         ref={videoRef}
@@ -88,9 +91,9 @@ export default function HeroSection() {
         preload="none" // Don't preload the video
         poster="/assets/background-poster.jpg" // Static image shown until video loads
         className="absolute inset-0 w-full h-full object-cover -z-10"
-        style={{ 
+        style={{
           opacity: isVideoLoaded ? 1 : 0,
-          transition: 'opacity 1s ease-in-out'
+          transition: "opacity 1s ease-in-out",
         }}
       />
       <motion.div
@@ -103,16 +106,16 @@ export default function HeroSection() {
         <motion.h1
           initial={{ opacity: 0, y: -60, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.4, type: 'spring', bounce: 0.5 }}
-          className="text-6xl md:text-8xl font-extrabold tracking-tight max-w-6xl font-headline mb-6"
+          transition={{ duration: 1.4, type: "spring", bounce: 0.5 }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold tracking-tight max-w-6xl font-headline mb-6"
         >
           <span
             className="inline-block bg-gradient-to-r from-[#c1f7ff] via-[#ffe7c1] to-[#d1ffd6] bg-clip-text text-transparent animate-gradient-x drop-shadow-lg"
             style={{
-              animation: 'gradient-x 3s ease-in-out infinite',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              color: 'transparent',
+              animation: "gradient-x 3s ease-in-out infinite",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
             }}
           >
             Urban Power
@@ -121,8 +124,8 @@ export default function HeroSection() {
         <motion.h2
           initial={{ opacity: 0, y: 40, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.4, type: 'spring', bounce: 0.3, delay: 0.3 }}
-          className="text-3xl md:text-5xl font-bold tracking-tight text-white/80 drop-shadow max-w-4xl font-headline"
+          transition={{ duration: 1.4, type: "spring", bounce: 0.3, delay: 0.3 }}
+          className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-white/80 drop-shadow max-w-4xl font-headline"
         >
           The Future of Energy is Here
         </motion.h2>
@@ -130,26 +133,45 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6 }}
-          className="mt-6 text-xl md:text-2xl text-white/80 max-w-2xl drop-shadow"
+          className="mt-6 text-lg sm:text-xl md:text-2xl text-white/80 max-w-2xl drop-shadow"
         >
           Harness the sun, store the power, and control your energy with our integrated solar solutions.
         </motion.p>
         <div className="mt-8 flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
-          <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg" style={{ minWidth: 90 }}>
+          <div
+            className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg"
+            style={{ minWidth: 90 }}
+          >
             <LayoutGrid className="w-5 h-5 text-primary" />
-            <span className="text-md md:text-lg font-semibold text-gray-800">Solar Panels</span>
+            <span className="text-sm sm:text-md md:text-lg font-semibold text-gray-800">
+              Solar Panels
+            </span>
           </div>
-          <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg" style={{ minWidth: 90 }}>
+          <div
+            className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg"
+            style={{ minWidth: 90 }}
+          >
             <BatteryCharging className="w-5 h-5 text-primary" />
-            <span className="text-md md:text-lg font-semibold text-gray-800">Home Batteries</span>
+            <span className="text-sm sm:text-md md:text-lg font-semibold text-gray-800">
+              Home Batteries
+            </span>
           </div>
-          <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg" style={{ minWidth: 90 }}>
+          <div
+            className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg"
+            style={{ minWidth: 90 }}
+          >
             <Zap className="w-5 h-5 text-primary" />
-            <span className="text-md md:text-lg font-semibold text-gray-800">Lithium Battery</span>
+            <span className="text-sm sm:text-md md:text-lg font-semibold text-gray-800">
+              Lithium Battery
+            </span>
           </div>
         </div>
         <div className="mt-10">
-          <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button
+            asChild
+            size="lg"
+            className="bg-accent text-accent-foreground hover:bg-accent/90"
+          >
             <Link href="#products">Explore Products</Link>
           </Button>
         </div>
