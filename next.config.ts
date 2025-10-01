@@ -30,6 +30,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  output: 'export',
+  basePath: '/Urban-Power', // Replace with your GitHub repository name
 };
 
 export default nextConfig;
