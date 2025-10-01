@@ -38,11 +38,15 @@ export default function HeroSection() {
         // For mobile, use a smaller, more compressed version or static image
         videoElement.setAttribute('poster', '/assets/background-poster.jpg');
         videoElement.src = '/assets/background-mobile.mp4';
-        videoElement.load(); // Ensure the video is loaded
+        videoElement.play().catch((error) => {
+          console.error('Error playing mobile video:', error);
+        }); // Attempt to play the video explicitly
       } else {
         // For desktop, load the regular video with delay
         videoElement.src = '/assets/background.mp4';
-        videoElement.load(); // Ensure the video is loaded
+        videoElement.play().catch((error) => {
+          console.error('Error playing desktop video:', error);
+        }); // Attempt to play the video explicitly
       }
       
       videoElement.addEventListener('loadeddata', () => {
