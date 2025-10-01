@@ -90,10 +90,13 @@ export default function AboutSection() {
             className="relative w-full h-80 md:h-96 rounded-lg overflow-hidden shadow-xl"
             variants={itemVariants}
           >
-            <img
+            <Image
               src="/assets/about.png"
               alt="About Us"
-              className="w-full h-full object-cover rounded-lg shadow-md" /* Ensure image fully fits */
+              className="rounded-lg shadow-md"
+              fill
+              sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 60vw, (max-width: 1200px) 50vw, 40vw"
+              style={{ objectFit: "cover" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
           </motion.div>

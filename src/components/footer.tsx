@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-border/50 pt-8 text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} CleanSpark Future. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Urban Power. All rights reserved.</p>
         </div>
       </div>
     </footer>

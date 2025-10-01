@@ -38,9 +38,11 @@ export default function HeroSection() {
         // For mobile, use a smaller, more compressed version or static image
         videoElement.setAttribute('poster', '/assets/background-poster.jpg');
         videoElement.src = '/assets/background-mobile.mp4';
+        videoElement.load(); // Ensure the video is loaded
       } else {
         // For desktop, load the regular video with delay
         videoElement.src = '/assets/background.mp4';
+        videoElement.load(); // Ensure the video is loaded
       }
       
       videoElement.addEventListener('loadeddata', () => {
