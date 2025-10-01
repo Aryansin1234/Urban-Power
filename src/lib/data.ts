@@ -65,10 +65,10 @@ export const products: Product[] = [
   },
   {
     id: 2,
-    name: 'Lithium (Solar) Batteries',
+    name: 'Lithium Batteries',
     tagline: 'Advanced LFP technology for high performance and safety.',
     icon: BatteryCharging,
-    imageId: 'battery',
+    imageId: 'lithiumbattery',
     models: [
       {
         id: '220LFP',
@@ -102,7 +102,7 @@ export const products: Product[] = [
         id: 'future',
         name: 'Upcoming Models: 24V Lithium & 48V Lithium',
         price: '',
-        imageId: 'lithiumbattery-future-models',
+        imageId: '',
         features: [
           'Future Ready – 24V & 48V Lithium for higher-capacity systems',
         ],
@@ -169,6 +169,79 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: 4,
+    name: 'Solar Generators',
+    tagline: 'Portable and efficient power solutions for on-the-go energy needs.',
+    icon: BatteryCharging,
+    imageId: 'solargenerator',
+    models: [
+      {
+        id: 'cola1000plus',
+        name: 'Cola 1000 Plus',
+        price: '',
+        imageId: 'solargenerator',
+        features: [
+          'Battery Chemistry: lithium-iron phosphate (LiFePO4)',
+          'Battery Capacity: 1004.8Wh',
+          'Battery Lifespan: 8000 cycles',
+          'Net Weight: 8.70kg',
+          'Dimensions: L285W205H235mm',
+          'Rating: 500W',
+          'AC Input (Grid): 150V-264V, 45-65HZ',
+          'DC Input (PV): 12-52VDC, 450W max',
+          'AC Output/Waveform: 500W max/Pure sine-wave',
+          'Max. PV Input Current: 16A',
+          'AC Charging power: 500W Max.',
+          'AC Outlet: Universal',
+        ],
+        specs: {},
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: 'Spray Pump Batteries',
+    tagline: 'Durable and efficient lithium-ion batteries designed for agricultural use.',
+    icon: BatteryCharging,
+    imageId: 'spraybattery',
+    models: [
+      {
+        id: '12v9ah',
+        name: '12V 9Ah Lithium-Ion Battery',
+        price: '',
+        imageId: 'urbanpower9ah',
+        features: [
+          'Compact and lightweight design for easy portability',
+          'High energy density for extended usage',
+          'Durable build to withstand agricultural conditions',
+          'Reliable performance for spray pumps',
+        ],
+        specs: {
+          'Voltage': '12V',
+          'Capacity': '9Ah',
+          'Battery Type': 'Lithium-Ion',
+        },
+      },
+      {
+        id: '12v14ah',
+        name: '12V 14Ah Lithium-Ion Battery',
+        price: '',
+        imageId: 'urbanpower1214',
+        features: [
+          'Higher capacity for longer operation time',
+          'Compact and lightweight design for easy portability',
+          'Durable build to withstand agricultural conditions',
+          'Reliable performance for spray pumps',
+        ],
+        specs: {
+          'Voltage': '12V',
+          'Capacity': '14Ah',
+          'Battery Type': 'Lithium-Ion',
+        },
+      },
+    ],
+  },
 ];
 
 export interface Testimonial {
@@ -182,30 +255,58 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Sarah L.',
-    location: 'Austin, TX',
+    name: 'Ananya Sharma',
+    location: 'Mumbai, India',
     review: 'Our electricity bill has been cut by 70%! The installation was professional, and the system has been flawless. It feels great to use clean energy.',
-    imageId: 'testimonial-1',
+    imageId: '',
   },
   {
     id: 2,
-    name: 'Mike & Jenna R.',
-    location: 'San Diego, CA',
+    name: 'Rajesh Kumar',
+    location: 'Delhi, India',
     review: 'The battery backup is a lifesaver. We had a blackout last month and didn\'t even notice until our neighbor called. Total peace of mind.',
-    imageId: 'testimonial-2',
+    imageId: '',
   },
   {
     id: 3,
-    name: 'David Chen',
-    location: 'Phoenix, AZ',
+    name: 'Priya Iyer',
+    location: 'Chennai, India',
     review: 'I was impressed with the quality of the panels and the inverter. The mobile app is fantastic for tracking my energy production and savings.',
-    imageId: 'testimonial-3',
+    imageId: '',
   },
-    {
+  {
     id: 4,
-    name: 'Emily B.',
-    location: 'Denver, CO',
+    name: 'Amitabh Desai',
+    location: 'Ahmedabad, India',
     review: 'The whole process, from quote to installation, was incredibly smooth. The team answered all my questions and helped me choose the perfect system for my home.',
-    imageId: 'testimonial-1',
+    imageId: '',
+  },
+  {
+    id: 5,
+    name: 'Sneha Kapoor',
+    location: 'Bangalore, India',
+    review: 'Switching to solar energy was the best decision for our family. The savings are incredible, and the service was top-notch.',
+    imageId: '',
+  },
+  {
+    id: 6,
+    name: 'Vikram Joshi',
+    location: 'Pune, India',
+    review: 'The team was very professional and guided us through every step. The system works flawlessly, and we are very happy with the results.',
+    imageId: '',
+  },
+  {
+    id: 7,
+    name: 'Aarti Mehta',
+    location: 'Jaipur, India',
+    review: 'I love how easy it is to monitor my energy usage with the app. The installation was quick, and the team was very helpful.',
+    imageId: '',
+  },
+  {
+    id: 8,
+    name: 'Rohan Gupta',
+    location: 'Kolkata, India',
+    review: 'The solar panels have been a great investment. The quality is excellent, and the customer support is always available when needed.',
+    imageId: '',
   },
 ];

@@ -61,7 +61,6 @@ export default function HeroSection() {
     };
   }, [isMobile]);
 
-
   return (
     <section ref={targetRef} className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center overflow-hidden">
       {/* Background with gradient placeholder that shows until video loads */}
@@ -129,18 +128,18 @@ export default function HeroSection() {
         >
           Harness the sun, store the power, and control your energy with our integrated solar solutions.
         </motion.p>
-        <div className="mt-8 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-white/80">
-          <div className="flex items-center gap-2 bg-white/10 border border-white/30 rounded-lg px-2 py-1 shadow-md backdrop-blur-sm" style={{ minWidth: 90 }}>
+        <div className="mt-8 flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
+          <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg" style={{ minWidth: 90 }}>
             <LayoutGrid className="w-5 h-5 text-primary" />
-            <span className="text-md md:text-lg font-semibold text-white drop-shadow">Solar Panels</span>
+            <span className="text-md md:text-lg font-semibold text-gray-800">Solar Panels</span>
           </div>
-          <div className="flex items-center gap-2 bg-white/10 border border-white/30 rounded-lg px-2 py-1 shadow-md backdrop-blur-sm" style={{ minWidth: 90 }}>
+          <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg" style={{ minWidth: 90 }}>
             <BatteryCharging className="w-5 h-5 text-primary" />
-            <span className="text-md md:text-lg font-semibold text-white drop-shadow">Home Batteries</span>
+            <span className="text-md md:text-lg font-semibold text-gray-800">Home Batteries</span>
           </div>
-          <div className="flex items-center gap-2 bg-white/10 border border-white/30 rounded-lg px-2 py-1 shadow-md backdrop-blur-sm" style={{ minWidth: 90 }}>
+          <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg" style={{ minWidth: 90 }}>
             <Zap className="w-5 h-5 text-primary" />
-            <span className="text-md md:text-lg font-semibold text-white drop-shadow">Lithium Battery</span>
+            <span className="text-md md:text-lg font-semibold text-gray-800">Lithium Battery</span>
           </div>
         </div>
         <div className="mt-10">

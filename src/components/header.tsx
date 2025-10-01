@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/lib/data";
+import Image from "next/image";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,7 +40,7 @@ export default function Header() {
                   fill
                   priority
                   sizes="(max-width: 640px) 100px, (max-width: 768px) 120px, (max-width: 1024px) 130px, 140px"
-                  className="object-contain rounded-xl sm:rounded-2xl shadow-lg"
+                  className="object-contain"
                 />
               </div>
             </Link>
@@ -78,13 +78,14 @@ export default function Header() {
                 <div className="p-4">
                   <div className="flex justify-between items-center mb-8">
                     <Link href="/" className="flex items-center">
-                      <div className="relative w-[100px] h-[40px] sm:w-[120px] sm:h-[48px]">
+                      <div className="relative w-[100px] h-[40px] sm:w-[120px] sm:h-[48px] md:w-[130px] md:h-[52px] lg:w-[140px] lg:h-[56px]">
                         <Image
                           src="/assets/logo.png"
                           alt="Urban Power Logo"
                           fill
-                          sizes="(max-width: 640px) 100px, 120px"
-                          className="object-contain rounded-xl"
+                          priority
+                          sizes="(max-width: 640px) 100px, (max-width: 768px) 120px, (max-width: 1024px) 130px, 140px"
+                          className="object-contain "
                         />
                       </div>
                     </Link>

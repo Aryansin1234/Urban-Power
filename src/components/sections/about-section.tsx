@@ -32,7 +32,7 @@ export default function AboutSection() {
     },
     {
       icon: Users,
-      value: 1500,
+      value: 20000,
       postfix: "+",
       label: "Happy Customers",
     },
@@ -91,7 +91,7 @@ export default function AboutSection() {
             variants={itemVariants}
           >
             <img
-              src="/assets/aboutsection.png"
+              src="/assets/about.png"
               alt="About Us"
               className="w-full h-full object-cover rounded-lg shadow-md" /* Ensure image fully fits */
             />

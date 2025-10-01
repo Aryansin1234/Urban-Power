@@ -291,7 +291,7 @@ export default function ProductsSection() {
                           }}
                           aria-label="Contact us to know more about this product"
                         >
-                          Know More
+                          Contact for more information
                         </motion.button>
                       </div>
 
