@@ -35,7 +35,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-muted-foreground">
               <li>
                 <a href="mailto:milleniumpowercorporation@gmail.com" className="hover:text-primary transition-colors">
-                  milleniumpowercorporation@gmail.com
+                  milleniumpowercorporation1@gmail.com
                 </a>
               </li>
               <li>123-456-7890</li>
