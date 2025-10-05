@@ -12,7 +12,7 @@ export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const isMobile = useIsMobile();
-  
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end start"],
@@ -22,21 +22,20 @@ export default function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
   const filter = useTransform(scrollYProgress, [0, 0.2], ["blur(0px)", "blur(10px)"]);
-  
+
   // Handle video loading and optimization
   useEffect(() => {
     // Don't load video on initial render for mobile devices
     if (!videoRef.current) return;
-    
+
     const loadVideo = () => {
       if (isMobile === undefined) return; // Wait until we know device type
-      
+
       const videoElement = videoRef.current;
       if (!videoElement) return;
-      
+
       if (isMobile) {
         // For mobile, use a smaller, more compressed version or static image
-        videoElement.setAttribute('poster', '/assets/background-poster.jpg');
         videoElement.src = '/assets/background-mobile.mp4';
         videoElement.play().catch((error) => {
           console.error('Error playing mobile video:', error);
@@ -48,15 +47,15 @@ export default function HeroSection() {
           console.error('Error playing desktop video:', error);
         }); // Attempt to play the video explicitly
       }
-      
+
       videoElement.addEventListener('loadeddata', () => {
         setIsVideoLoaded(true);
       });
     };
-    
+
     // Delay video loading slightly to prioritize other content
     const timer = setTimeout(loadVideo, 500);
-    
+
     return () => {
       clearTimeout(timer);
       if (videoRef.current) {
@@ -89,7 +88,6 @@ export default function HeroSection() {
         muted
         playsInline
         preload="none" // Don't preload the video
-        poster="/assets/background-poster.jpg" // Static image shown until video loads
         className="absolute inset-0 w-full h-full object-cover -z-10"
         style={{
           opacity: isVideoLoaded ? 1 : 0,
